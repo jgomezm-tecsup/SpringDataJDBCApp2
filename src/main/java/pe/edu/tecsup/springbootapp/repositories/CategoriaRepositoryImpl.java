@@ -19,7 +19,6 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 		
 		log.info("call listar()");
 		
-		
 		return null;
 	}
 
