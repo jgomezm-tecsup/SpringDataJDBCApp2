@@ -24,7 +24,7 @@ class CategoriaServiceTest {
 	CategoriaService categoriaService;
 	
 	@Test
-	void test() throws Exception {
+	void testListar() throws Exception {
 		
 		List<Categoria> cats = categoriaService.listar();
 		
@@ -34,5 +34,19 @@ class CategoriaServiceTest {
 		//assertThat(cats.size(), is(3));
 
 	}
+	
+	@Test
+	void testDummy() throws Exception {
+		
+		List<Categoria> cats = categoriaService.listar();
 
+		log.info("Print by foreach");
+		for(Categoria cat : cats) log.info(cat.toString());
+				
+		log.info("Print by stream");
+		cats.stream().forEach(item -> log.info(item.toString()));
+
+	}
+
+	
 }
