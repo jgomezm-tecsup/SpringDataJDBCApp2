@@ -26,16 +26,13 @@ class CategoriaServiceTest {
 	@Test
 	void test() throws Exception {
 		
-		List<Categoria> cats 
-				= categoriaService.listar();
+		List<Categoria> cats = categoriaService.listar();
 		
 		log.info(">>>>" + cats.toString());
 		
 		//assertThat(cats.isEmpty(), is(false));
-		
 		assertThat(cats.size(), is(3));
-		
-		//fail("Not yet implemented");
+
 	}
 
 }
