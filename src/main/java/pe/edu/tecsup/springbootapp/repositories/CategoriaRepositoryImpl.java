@@ -23,6 +23,8 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 		// Dummy 
 		List<Categoria> categorias = new ArrayList<>();
 		categorias.add(new Categoria());
+		categorias.add(new Categoria());
+		categorias.add(new Categoria());
 		
 		return categorias;
 	}
