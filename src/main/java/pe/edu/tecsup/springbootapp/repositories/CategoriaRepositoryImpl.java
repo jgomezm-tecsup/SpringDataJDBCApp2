@@ -16,7 +16,10 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 	
 	@Override
 	public List<Categoria> listar() throws Exception {
-		// TODO Auto-generated method stub
+		
+		log.info("call listar()");
+		
+		
 		return null;
 	}
 
