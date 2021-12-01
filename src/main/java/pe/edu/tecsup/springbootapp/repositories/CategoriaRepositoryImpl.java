@@ -30,11 +30,15 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 		
 		List<Categoria> categorias = jdbcTemplate.query(sql, new RowMapper<Categoria>() {
 			@Override
-			public Categoria mapRow(ResultSet rs, int rowNum) throws SQLException {
+			public Categoria mapRow(ResultSet rs, int rowNum) 
+					throws SQLException {
+				
 				Categoria categoria = new Categoria();
+				
 				categoria.setId(rs.getLong("id"));
 				categoria.setNombre(rs.getString("nombre"));
 				categoria.setOrden(rs.getInt("orden"));
+				
 				return categoria;
 			}
 		});
