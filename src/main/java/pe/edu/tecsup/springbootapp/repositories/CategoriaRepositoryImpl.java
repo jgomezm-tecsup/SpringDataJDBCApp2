@@ -1,5 +1,6 @@
 package pe.edu.tecsup.springbootapp.repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,7 +20,11 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 		
 		log.info("call listar()");
 		
-		return null;
+		// Dummy 
+		List<Categoria> categorias = new ArrayList<>();
+		categorias.add(new Categoria());
+		
+		return categorias;
 	}
 
 }
