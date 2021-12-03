@@ -1,6 +1,5 @@
 package pe.edu.tecsup.springbootapp.services;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
