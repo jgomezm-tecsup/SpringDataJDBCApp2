@@ -71,6 +71,63 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 		log.info("productos: " + productos);
 		return productos;
 	}
+	
+	
+	
+	@Override
+	public List<Producto> buscarPorNombre(String nombre) throws Exception {
+		
+		log.info("call buscarPorNombre()");
+		
+		String sql = "SELECT p.id, p.categorias_id, c.nombre AS categorias_nombre, p.nombre, "
+				+ " p.descripcion, p.precio, p.stock, p.imagen_nombre, p.imagen_tipo, p.imagen_tamanio, p.creado, "
+				+ " p.estado " 
+				+ "FROM productos p " 
+				+ "INNER JOIN categorias c ON c.id=p.categorias_id\r\n"
+				+ "WHERE estado=1 AND p.nombre =  ? " 
+				+ "ORDER BY id";
+		
+		
+		//List<Producto> productos = jdbcTemplate.query(sql,  new Object[] {"Kingstone"}, new RowMapper<Producto>() {
+		List<Producto> productos = jdbcTemplate.query(sql, new Object[] {nombre} , new RowMapper<Producto>() {
+				public Producto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				
+				Producto producto = new Producto();
+				producto.setId(rs.getLong("id"));
+				producto.setCategorias_id(rs.getLong("categorias_id"));
+				
+				// set categoria
+				Categoria categoria = new Categoria();
+				categoria.setId(rs.getLong("categorias_id"));
+				categoria.setNombre(rs.getString("categorias_nombre"));
+				producto.setCategoria(categoria);
+				
+				producto.setNombre(rs.getString("nombre"));
+				producto.setDescripcion(rs.getString("descripcion"));
+				producto.setPrecio(rs.getDouble("precio"));
+				
+				if (rs.wasNull())
+					producto.setPrecio(null);
+				producto.setStock(rs.getInt("stock"));
+				producto.setImagen_nombre(rs.getString("imagen_nombre"));
+				producto.setImagen_tipo(rs.getString("imagen_tipo"));
+				producto.setImagen_tamanio(rs.getLong("imagen_tamanio"));
+				
+				if (rs.wasNull())
+					producto.setImagen_tamanio(null);
+				producto.setEstado(rs.getInt("estado"));
+				
+				return producto;
+			}
+		});
+		
+		log.info("productos: " + productos);
+		
+		return productos;
+	}
+	
+	
+	
 
 	// jdbcTemplate.update
 	@Override
@@ -109,5 +166,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 							nombreProducto,
 							id);
 	}
+
+
 
 }

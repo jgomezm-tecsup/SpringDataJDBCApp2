@@ -25,6 +25,15 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
+	public List<Producto> buscarPorNombre(String nombre) 
+			throws Exception {
+		// TODO Auto-generated method stub
+		log.info("call buscarPorNombre()");
+		return productoRepository.buscarPorNombre(nombre);
+	}
+
+	
+	@Override
 	public void registrar(Producto producto) throws Exception {
 		log.info("call registrar(producto: " + producto + ")");
 		productoRepository.registrar(producto);
@@ -35,5 +44,6 @@ public class ProductoServiceImpl implements ProductoService {
 		log.info("call eliminar(id: " + id + ")");
 		productoRepository.eliminar(id);
 	}
+
 
 }

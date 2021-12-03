@@ -8,7 +8,10 @@ public interface ProductoService {
 	
 	public List<Producto> listar() throws Exception;
 
+	public List<Producto> buscarPorNombre(String nombre) throws Exception;
+
 	public void registrar(Producto producto) throws Exception;
 
 	public void eliminar(Long id) throws Exception;
+	
 }
