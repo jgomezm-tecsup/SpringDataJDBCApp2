@@ -119,7 +119,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 				
 				return producto;
 			}
-		}, new Object[] {nombre} );
+		}, new Object[] {nombre} );  // new Object[] {parameter1, parameter2 , .....,}
 		
 		log.info("productos: " + productos);
 		
