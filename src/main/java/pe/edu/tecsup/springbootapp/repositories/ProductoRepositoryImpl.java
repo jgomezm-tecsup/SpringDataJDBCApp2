@@ -84,7 +84,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 				+ " p.estado " 
 				+ "FROM productos p " 
 				+ "INNER JOIN categorias c ON c.id=p.categorias_id\r\n"
-				+ "WHERE estado=1 AND p.nombre =  ? " 
+				+ "WHERE estado=1 AND p.nombre LIKE  ? " 
 				+ "ORDER BY id";
 		
 		
