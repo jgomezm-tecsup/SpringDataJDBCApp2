@@ -45,5 +45,12 @@ public class ProductoServiceImpl implements ProductoService {
 		productoRepository.eliminar(id);
 	}
 
+	@Override
+	public void actualizar(Long id, String nombreProducto) throws Exception {
+		log.info("call actualizar(id: " + id + ")");
+		productoRepository.actualizar(id, nombreProducto);
+		
+	}
+
 
 }

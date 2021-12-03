@@ -37,10 +37,12 @@ public class ProductoServiceTest {
 	public void testBuscarPorNombre() throws Exception {
 		
 		List<Producto> productos = productoService.buscarPorNombre("AMD");
+		
 		log.info("Print by productos");
 		for(Producto producto : productos) log.info(producto.toString());
-		//assertThat(productos.isEmpty(), is(false));
-	
+		
+		assertThat(productos.isEmpty(), is(false));
+		
 	}
 
 	@Test
@@ -101,5 +103,9 @@ public class ProductoServiceTest {
 		assertThat(totalDespues - totalAntes, is(1));
 	}
 	
-	
+	@Test
+	public void testActualizar() throws Exception {
+		// TO DO 
+		
+	}
 }
