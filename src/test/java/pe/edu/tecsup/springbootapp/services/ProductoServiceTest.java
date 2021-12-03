@@ -65,7 +65,25 @@ public class ProductoServiceTest {
 		assertThat(totalAntes - totalDespues, is(1));
 	}
 	
-	
+	@Test
+	public void testRegistar2() throws Exception {
+		
+		List<Producto> productos = productoService.listar();
+		int totalAntes = productos.size();
+		
+		Producto producto = new Producto();
+		producto.setCategorias_id(2L);
+		producto.setNombre("INTEL");
+		producto.setDescripcion("Core 9i ");
+		producto.setPrecio(280.0);
+		producto.setStock(12);
+		productoService.registrar(producto);	
+		
+		productos = productoService.listar();
+		int totalDespues = productos.size();
+		
+		assertThat(totalDespues - totalAntes, is(1));
+	}
 	
 	
 }

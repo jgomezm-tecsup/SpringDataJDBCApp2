@@ -31,12 +31,14 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 				+ " p.estado " 
 				+ "FROM productos p " 
 				+ "INNER JOIN categorias c ON c.id=p.categorias_id\r\n"
+				//+ "WHERE estado=1 AND p.nombre =  ? " 
 				+ "WHERE estado=1 " 
 				+ "ORDER BY id";
 		
 		
+		//List<Producto> productos = jdbcTemplate.query(sql,  new Object[] {"Kingstone"}, new RowMapper<Producto>() {
 		List<Producto> productos = jdbcTemplate.query(sql, new RowMapper<Producto>() {
-			public Producto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				public Producto mapRow(ResultSet rs, int rowNum) throws SQLException {
 				
 				Producto producto = new Producto();
 				producto.setId(rs.getLong("id"));
