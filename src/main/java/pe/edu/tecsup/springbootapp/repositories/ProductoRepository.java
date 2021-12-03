@@ -7,10 +7,11 @@ import pe.edu.tecsup.springbootapp.entities.Producto;
 public interface ProductoRepository {
 
 	
-	public List<Producto> listar() throws Exception;
+	List<Producto> listar() throws Exception;
 	
-	public void registrar(Producto producto) throws Exception;
+	void registrar(Producto producto) throws Exception;
 	
-	public void eliminar(Long id) throws Exception;
+	void eliminar(Long id) throws Exception;
 
+	void actualizar(Long id, String nombreProducto) throws Exception;
 }

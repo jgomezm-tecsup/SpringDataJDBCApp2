@@ -22,6 +22,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	// jdbcTemplate.query
 	@Override
 	public List<Producto> listar() throws Exception {
 		log.info("call listar()");
@@ -38,22 +39,26 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 			public Producto mapRow(ResultSet rs, int rowNum) throws SQLException {
 				
 				Producto producto = new Producto();
-				
 				producto.setId(rs.getLong("id"));
 				producto.setCategorias_id(rs.getLong("categorias_id"));
+				
+				// set categoria
 				Categoria categoria = new Categoria();
 				categoria.setId(rs.getLong("categorias_id"));
 				categoria.setNombre(rs.getString("categorias_nombre"));
 				producto.setCategoria(categoria);
+				
 				producto.setNombre(rs.getString("nombre"));
 				producto.setDescripcion(rs.getString("descripcion"));
 				producto.setPrecio(rs.getDouble("precio"));
+				
 				if (rs.wasNull())
 					producto.setPrecio(null);
 				producto.setStock(rs.getInt("stock"));
 				producto.setImagen_nombre(rs.getString("imagen_nombre"));
 				producto.setImagen_tipo(rs.getString("imagen_tipo"));
 				producto.setImagen_tamanio(rs.getLong("imagen_tamanio"));
+				
 				if (rs.wasNull())
 					producto.setImagen_tamanio(null);
 				producto.setEstado(rs.getInt("estado"));
@@ -65,27 +70,42 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 		return productos;
 	}
 
+	// jdbcTemplate.update
 	@Override
 	public void registrar(Producto producto) throws Exception {
+		
 		log.info("call registrar(producto: " + producto + ")");
+		
 		String sql = "INSERT INTO productos (categorias_id, nombre, descripcion, precio, stock, imagen_nombre, imagen_tipo, imagen_tamanio) " +
 		             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		
 		jdbcTemplate.update(sql,
-								producto.getCategorias_id(),
-								producto.getNombre(),
-								producto.getDescripcion(),
-								producto.getPrecio(),
-								producto.getStock(),
-								producto.getImagen_nombre(),
-								producto.getImagen_tipo(),
-								producto.getImagen_tamanio());
+							producto.getCategorias_id(),
+							producto.getNombre(),
+							producto.getDescripcion(),
+							producto.getPrecio(),
+							producto.getStock(),
+							producto.getImagen_nombre(),
+							producto.getImagen_tipo(),
+							producto.getImagen_tamanio());
 							}
 
+	// jdbcTemplate.update
 	@Override
 	public void eliminar(Long id) throws Exception {
 		log.info("call eliminar(id: " + id + ")");
 		String sql = "DELETE FROM productos WHERE id = ?";
 		jdbcTemplate.update(sql, id);
+	}
+
+	// jdbcTemplate.update
+	@Override
+	public void actualizar(Long id, String nombreProducto) throws Exception {
+		log.info("call actualizar(id: " + id + ")");
+		String sql = "UPDATE productos SET  nombre = ?  WHERE id = ?";
+		jdbcTemplate.update(sql, 
+							nombreProducto,
+							id);
 	}
 
 }
