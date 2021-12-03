@@ -20,8 +20,11 @@ public class ProductoServiceTest {
 
 	@Test
 	public void testListar() throws Exception {
+		
 		List<Producto> productos = productoService.listar();
+	
 		assertThat(productos.isEmpty(), is(false));
+	
 	}
 
 	@Test
@@ -55,6 +58,7 @@ public class ProductoServiceTest {
 
 		Producto ultimoProducto = productos.get(productos.size() - 1);
 		productoService.eliminar(ultimoProducto.getId());
+		
 		productos = productoService.listar();
 		int totalDespues = productos.size();
 		
