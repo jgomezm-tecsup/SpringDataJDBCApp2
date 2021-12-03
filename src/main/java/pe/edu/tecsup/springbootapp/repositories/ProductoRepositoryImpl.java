@@ -89,7 +89,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 		
 		
 		//List<Producto> productos = jdbcTemplate.query(sql,  new Object[] {"Kingstone"}, new RowMapper<Producto>() {
-		List<Producto> productos = jdbcTemplate.query(sql, new Object[] {nombre} , new RowMapper<Producto>() {
+		List<Producto> productos = jdbcTemplate.query(sql, new RowMapper<Producto>() {
 				public Producto mapRow(ResultSet rs, int rowNum) throws SQLException {
 				
 				Producto producto = new Producto();
@@ -119,7 +119,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
 				
 				return producto;
 			}
-		});
+		}, new Object[] {nombre} );
 		
 		log.info("productos: " + productos);
 		
